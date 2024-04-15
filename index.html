@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>💎 Presentations 💎</title>
+
+    <!-- CSS Style from db-ui-core -->
+    <style>
+      :where(html) {
+        line-height: 1.15;
+      }
+      :where(b, strong) {
+        font-weight: bolder;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        min-height: 100vh;
+        font-size: 1rem;
+        align-content: center;
+      }
+      html {
+        background-color: #fdfdfd;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        min-width: 300px;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        text-rendering: optimizeLegibility;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+      body,
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: "DB Screen Sans", Helvetica, Arial, sans-serif;
+      }
+      body {
+        color: #282d37;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+      a {
+        color: #282d37;
+      }
+      a strong {
+        color: currentColor;
+      }
+      a:hover {
+        color: #5d616a;
+      }
+      a:focus-visible {
+        color: #5d616a;
+      }
+      html {
+        box-sizing: var(--db-box-sizing, border-box);
+      }
+      *,
+      ::before,
+      ::after {
+        box-sizing: inherit;
+      }
+      :where(ul) {
+        list-style-type: "•   ";
+      }
+      :where(ul) li::marker {
+        color: #ec0016;
+      }
+      .rea-footer::after,
+      .rea-main::after {
+        clear: both;
+        content: " ";
+        display: table;
+      }
+      .cmp-metanavigation {
+        display: flex;
+        list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
+        margin-bottom: 0;
+        margin-top: 0;
+        padding-left: 0;
+      }
+      .cmp-metanavigation li {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .rea-footer .cmp-metanavigation li {
+        padding-left: 0.375rem;
+        padding-right: 0.375rem;
+      }
+      .cmp-metanavigation li .elm-link {
+        text-decoration: none;
+      }
+      .rea-footer .cmp-metanavigation {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      @media screen and (max-width: 767px) {
+        .rea-footer .cmp-metanavigation {
+          margin-bottom: 1rem;
+        }
+      }
+      @media screen and (min-width: 768px) {
+        .rea-footer .cmp-metanavigation {
+          float: right;
+        }
+      }
+      body {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+      }
+      .rea-header {
+        background-color: #fdfdfd;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+          0 4px 8px 1px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: center;
+        display: flex;
+        margin-bottom: 1rem;
+        min-height: 4.9375rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 1.75rem;
+      }
+      .rea-main {
+        background-color: rgba(0, 0, 0, 0);
+        margin: 0 auto;
+        padding: 1rem;
+        position: relative;
+      }
+      .rea-footer {
+        background-color: #fdfdfd;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.08), 0 5px 30px rgba(0, 0, 0, 0.05);
+        color: #646973;
+        margin-top: 1rem;
+        padding: 1.3125rem 1rem;
+      }
+      .presentation_box {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 5px; /* 5px rounded corners */
+        padding: 0.5em;
+        margin: 0.5em;
+        transition: transform 0.2s ease-out;
+        vertical-align: top;
+      }
+      .presentation_box:hover {
+        border: 1px solid #ec0016;
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="rea-header">
+      <div class="cmp-brand">
+        <span>💎 Presentations 💎</span>
+      </div>
+    </header>
+
+    <main class="rea-main">
+      <p class="presentations">No presentations available atm...</p>
+    </main>
+
+    <script src="./slides.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let html = "";
+        // iterate over array and build box with link for each available slide
+        data.forEach(function (prezi) {
+          html +=
+            "<a href=\/" +
+            prezi +
+            "/><div class='presentation_box'><table><tr><td><img id=" +
+            prezi +
+            ' src="' +
+            prezi +
+            "/img/preview_" +
+            prezi +
+            '.png" width=25% height=25%></td><td><p>' +
+            prezi +
+            "</p></td></tr></table></div></a><br>";
+        });
+
+        // replace presentations spaceholder with computed slides
+        document.getElementsByClassName("presentations")[0].innerHTML = html;
+      });
+    </script>
+  </body>
+</html>

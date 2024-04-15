@@ -7,33 +7,26 @@ Run this script from the root directory of this repository:
 ```sh
 cd slidev
 npm i
-mkdir render
 # define slides array in slides.js
-echo "const data = [" >> ./render/slides.js
+echo "const data = [" >> ../public/slides.js
 # render each slide separately
 for SLIDE in $(echo *.md); do
     echo "ℹ️ Rendering slide ${SLIDE}"
     SLIDE_NAME=${SLIDE/.md/}
     # create temporary output dir for slide
-    mkdir -p render/${SLIDE_NAME}
+    mkdir -p ../public/${SLIDE_NAME}
     # build slide
-    npx slidev build --base /${SLIDE_NAME}/ ${SLIDE}
-    # move dist to temporary output dir
-    mv dist/* render/${SLIDE_NAME}
+    npx slidev build --base /${SLIDE_NAME}/ --output ../public/${SLIDE_NAME} ${SLIDE}
     # add img assets to output dir
-    mkdir render/${SLIDE_NAME}/img
-    cp img/* render/${SLIDE_NAME}/img
-    # delete build dir
-    rm -rf dist
+    mkdir ../public/${SLIDE_NAME}/img
+    cp img/* ../public/${SLIDE_NAME}/img
     # add slide to array in slides.js
-    echo \"${SLIDE_NAME}\", >> ./render/slides.js
+    echo \"${SLIDE_NAME}\", >> ../public/slides.js
     echo "✅ Done rendering slide ${SLIDE}"
 done
 # close slides array in slides.js
-echo "];" >> ./render/slides.js
-# move temporary output dir to final outdir
-mv ./render ../public
-# add index page to final outdir
+echo "];" >> ../public/slides.js
+# add index page to outdir
 mv ../index.html ../public
 ```
 
